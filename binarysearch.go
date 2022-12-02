@@ -1,30 +1,57 @@
+// package main
+
+// import "fmt"
+
+// func BinarySearch(detalist []int, key int) int {
+// 	left := 0
+// 	right := len(detalist) - 1
+// 	for left <= right {
+// 		mid := (left + right) / 2
+// 		if detalist[mid] == key {
+// 			return mid
+// 		} else if detalist[mid] < key {
+// 			left = mid + 1
+// 		} else {
+// 			right = mid - 1
+// 		}
+
+// 	}
+// 	return -1
+// }
+// func main() {
+// 	detalist := []int{10, 5, 7, 8, 3, 2, 1}
+// 	fmt.Println(BinarySearch(detalist, 7))
+// 	fmt.Println(BinarySearch(detalist, 7))
+
+// }
+
+// -----------------------------------------------------------------------------------------
+
+// Binary search Recursive
+
 package main
 
 import "fmt"
 
-func Binarysearch(items []int, value int) {
-	min := 0
-	max := len(items)
-	mid := 0
-	for min < max {
-		mid = (min + max) / 2
-		if value == items[mid] {
-			break
-		} else if value > items[mid] {
-			min = mid + 1
+// Recursive Binary Search
+func binarySearch(data int, A []int) bool {
+	low := 0
+	high := len(A) - 1
+	if low <= high {
+		mid := (high + low) / 2
+		if A[mid] > data {
+			return binarySearch(data, A[:mid])
+		} else if A[mid] < data {
+			return binarySearch(data, A[mid+1:])
 		} else {
-			max = mid - 1
+			return true
 		}
 	}
-	if min >= len(items) {
-		fmt.Println("Item not found")
-
-	} else {
-		fmt.Println("Item found at =", mid+1)
-	}
+	return false
 }
 
 func main() {
-	items := []int{12, 14, 15, 17, 21, 23, 25, 27, 29}
-	Binarysearch(items, 21)
+	items := []int{1, 2, 9, 10, 11, 45, 73, 80, 200} // should be a sorted array
+	fmt.Println(binarySearch(63, items))
+	fmt.Println(binarySearch(73, items))
 }

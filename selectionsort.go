@@ -12,9 +12,11 @@ func selectionsort(items []int) {
 
 			}
 		}
-		temp := items[i]
-		items[i] = items[min]
-		items[min] = temp
+		if min != 0 {
+			temp := items[i]
+			items[i] = items[min]
+			items[min] = temp
+		}
 	}
 }
 func main() {
@@ -38,9 +40,11 @@ func main() {
 
 // 			}
 // 		}
+
 // 		temp := items[i]
 // 		items[i] = items[max]
 // 		items[max] = temp
+
 // 	}
 // }
 // func main() {
